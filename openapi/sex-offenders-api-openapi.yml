@@ -1,0 +1,44 @@
+openapi: 3.1.0
+info:
+  title: Crimeometer Sex Offenders API
+  description: |
+    The Sex Offenders API by Crimeometer returns registered sex offenders
+    across the US, filterable by name or zip code. Documented at
+    https://www.crimeometer.com/sex-offenders-api. Authentication uses the
+    x-api-key request header (obtain via Crimeometer Contact Us form).
+  version: v3
+servers:
+  - url: https://api.crimeometer.com/v3
+    description: Production
+security:
+  - apiKeyAuth: []
+tags:
+  - name: Sex Offenders
+paths:
+  /sex-offenders/records:
+    get:
+      tags: [Sex Offenders]
+      summary: Retrieve registered sex offender records
+      operationId: getSexOffenderRecords
+      parameters:
+        - in: query
+          name: zipcode
+          schema: { type: string }
+          description: Filter by zip code
+        - in: query
+          name: name
+          schema: { type: string }
+          description: Filter by offender name
+      responses:
+        '200':
+          description: Sex offender records
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
