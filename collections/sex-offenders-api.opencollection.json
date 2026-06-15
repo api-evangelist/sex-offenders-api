@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Crimeometer Sex Offenders API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sex Offenders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve registered sex offender records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.crimeometer.com/v3/sex-offenders/records",
+            "params": [
+              {
+                "name": "zipcode",
+                "value": "",
+                "type": "query",
+                "description": "Filter by zip code"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by offender name"
+              }
+            ]
+          },
+          "docs": "Retrieve registered sex offender records"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

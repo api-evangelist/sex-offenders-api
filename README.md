@@ -1,42 +1,38 @@
 # Sex Offenders API (sex-offenders-api)
+
 Sex Offenders API Definition. The Sex Offenders API lets you request registered sex offenders across the US by name or zip code (Disclaimer).
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-search/sex-offenders-api/refs/heads/main/apis.yml)
+**APIs.json:** [https://raw.githubusercontent.com/api-search/sex-offenders-api/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-search/sex-offenders-api/refs/heads/main/apis.yml)
 
 ## Scope
 
-- **Type:** Contract 
-- **Position:** Consuming 
-- **Access:** 3rd-Party 
+- **Position:** Consuming
+- **Access:** 3rd-Party
 
-## Tags:
+## Tags
 
- - Sex Offenders
+- Sex Offenders
 
 ## Timestamps
 
-- **Created:** 2024-11-13 
-- **Modified:** 2025-01-03 
+- **Created:** 2024-11-13
+- **Modified:** 2026-03-16
 
 ## APIs
 
 ### Sex Offenders API
+
 Sex Offenders API Definition. The Sex Offenders API lets you request registered sex offenders across the US by name or zip code (Disclaimer).
 
-**Human URL:** [https://www.crimeometer.com/sex-offenders-api](https://www.crimeometer.com/sex-offenders-api)
-
-
-#### Tags:
-
- - API
+- **Human URL:** [https://www.crimeometer.com/sex-offenders-api](https://www.crimeometer.com/sex-offenders-api)
 
 #### Properties
 
 - [Documentation](https://www.crimeometer.com/sex-offenders-api)
+- [Postman Collection](collections/sex-offenders-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/sex-offenders-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Maintainers
 
 **FN:** Kin Lane
-
-**Email:** info@apievangelist.com
-
+**Email:** kin@apievangelist.com
