@@ -28,3 +28,8 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 specificationVersion: '0.19'
+common:
+- type: DomainSecurity
+  url: security/sex-offenders-api-domain-security.yml
+- type: Authentication
+  url: authentication/sex-offenders-api-authentication.yml
