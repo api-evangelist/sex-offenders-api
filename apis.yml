@@ -29,6 +29,8 @@ maintainers:
     email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
+- type: AgenticAccess
+  url: agentic-access/sex-offenders-api-agentic-access.yml
 - type: DomainSecurity
   url: security/sex-offenders-api-domain-security.yml
 - type: Authentication
