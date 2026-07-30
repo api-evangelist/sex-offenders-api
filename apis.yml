@@ -2,21 +2,43 @@ aid: sex-offenders-api
 url: >-
   https://raw.githubusercontent.com/api-search/sex-offenders-api/refs/heads/main/apis.yml
 apis:
-  - aid: sex-offenders-api:sex-offenders-api
-    name: Sex Offenders API
-    tags: []
-    humanURL: https://www.crimeometer.com/sex-offenders-api
-    properties:
-      - url: https://www.crimeometer.com/sex-offenders-api
-        type: Documentation
-    description: >-
-      Sex Offenders API Definition. The Sex Offenders API lets you request
-      registered sex offenders across the US by name or zip code (Disclaimer).
+- aid: sex-offenders-api:sex-offenders-api
+  name: Sex Offenders API
+  tags: []
+  humanURL: https://www.crimeometer.com/sex-offenders-api
+  properties:
+  - url: https://www.crimeometer.com/sex-offenders-api
+    type: Documentation
+  description: >-
+    Sex Offenders API Definition. The Sex Offenders API lets you request registered sex offenders across
+    the US by name or zip code (Disclaimer).
+- aid: sex-offenders-api:sex-offenders-api-sex-offenders-api
+  name: Sex Offenders API Sex Offenders API
+  description: The Sex Offenders API from Sex Offenders API — 1 operation(s) for sex offenders.
+  humanURL: https://www.crimeometer.com/sex-offenders-api
+  tags:
+  - Sex Offenders
+  properties:
+  - type: OpenAPI
+    url: openapi/sex-offenders-api-sex-offenders-api-openapi.yml
 name: Sex Offenders API
 tags:
   - Sex Offenders
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/sex-offenders-api.png
 access: 3rd-Party
 created: '2024-11-13'
 modified: '2026-03-16'
