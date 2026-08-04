@@ -1,0 +1,14 @@
+{
+  "provider": "sex-offenders-api",
+  "sources": [
+    "sex-offenders-api-sex-offenders-api-openapi.yml"
+  ],
+  "outputs": [
+    "sex-offenders-api-sex-offenders-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
