@@ -1,0 +1,77 @@
+generated: '2026-08-28'
+method: derived
+source: >-
+  Derived from openapi/sex-offenders-api-sex-offenders-api-openapi.yml, the published
+  Postman collection, live probes of api.crimeometer.com (2026-08-28), and a read of
+  www.crimeometer.com (product, pricing, tos, privacy-policy pages). No compliance,
+  certification or standards claim appears anywhere on CrimeoMeter's public surface.
+provider: Sex Offenders API
+providerId: sex-offenders-api
+standards:
+  - id: oauth2
+    conforms: false
+    evidence: >-
+      The only securityScheme is an apiKey in the x-api-key header. No OAuth endpoint,
+      no /.well-known/oauth-authorization-server (403 on api.crimeometer.com, 400 on
+      www.crimeometer.com).
+  - id: oidc
+    conforms: false
+    evidence: /.well-known/openid-configuration returns 400 (www) and 403 (api). No OIDC anywhere in the docs.
+  - id: rfc9457
+    conforms: false
+    evidence: >-
+      Live 403 responses return content-type application/json with the AWS API Gateway
+      envelope {"message":"Forbidden"}, not application/problem+json.
+  - id: json:api
+    conforms: false
+    evidence: Response envelope is a bespoke object ({sex_offenders_count, pages_count, sex_offenders[]}), not JSON:API.
+  - id: pagination
+    conforms: true
+    evidence: >-
+      The published response example exposes pages_count and the Crime Data requests in the
+      published Postman collection carry a page query parameter, so page-number pagination
+      is the house convention. It is not declared in any spec CrimeoMeter publishes.
+  - id: idempotency
+    conforms: false
+    evidence: Read-only GET surface; no idempotency key header is documented, and none is needed.
+  - id: openapi
+    conforms: false
+    evidence: >-
+      CrimeoMeter publishes no OpenAPI. Probes of /openapi.json, /openapi.yaml,
+      /swagger.json, /api-docs, /docs and /redoc on api.crimeometer.com all return 403;
+      the same paths on www.crimeometer.com return the Wix 400 shell. The only
+      machine-readable contract it publishes is the public Postman collection.
+  - id: postman-collection-v2
+    conforms: true
+    evidence: >-
+      https://documenter.getpostman.com/api/collections/12755833/TzK2auPn returns a
+      schema.getpostman.com/json/collection/v2.0.0 document, public, published 2024-07-26.
+  - id: mcp
+    conforms: true
+    evidence: >-
+      https://www.crimeometer.com/_api/mcp answers an anonymous JSON-RPC tools/list with 9
+      tools. Platform-authored by Wix; it does not front the Sex Offenders API.
+  - id: llmstxt
+    conforms: true
+    evidence: https://www.crimeometer.com/llms.txt returns 200 text/plain (3,250 bytes), Wix-generated.
+domain_standards:
+  - id: nsopw
+    name: National Sex Offender Public Website (Dru Sjodin) data conventions
+    conforms: false
+    evidence: >-
+      Field names are CrimeoMeter's own (sex_offender_* prefix). Neither the contract nor
+      the docs reference NSOPW, an NCMEC schema, or any state registry exchange format.
+    note: >-
+      REWARD-ONLY CHECK, NOT A PENALTY. US sex offender registry data has no adopted
+      machine-readable interchange standard — NSOPW is a federal search portal, not a data
+      specification — so there is no domain standard for this market to conform to. Recorded
+      as probed-and-absent, not as a failure.
+compliance:
+  certifications: []
+  evidence: >-
+    No SOC 2, ISO 27001, PCI, HIPAA, FedRAMP, GDPR or CCPA claim appears on
+    www.crimeometer.com, its Terms of Service (www.crimeometer.com/tos) or its Privacy
+    Policy (www.crimeometer.com/privacy-policy). No trust center is published.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

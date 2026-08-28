@@ -1,0 +1,53 @@
+generated: '2026-08-28'
+method: probed
+source: >-
+  Live unauthenticated GETs against api.crimeometer.com on 2026-08-28, plus the response
+  codes declared in openapi/sex-offenders-api-sex-offenders-api-openapi.yml. CrimeoMeter
+  publishes no error reference page — these are the envelopes its edge actually returns.
+provider: Sex Offenders API
+providerId: sex-offenders-api
+format: bespoke-json
+problem_json: false
+envelope:
+  shape: '{"message": "<string>"}'
+  content_type: application/json
+  note: >-
+    AWS API Gateway default envelope. Not RFC 9457 application/problem+json: there is no
+    type, title, status, detail or instance member, so an agent cannot dereference a problem
+    type or distinguish causes beyond the HTTP status and an untyped English string.
+problem_types:
+  - status: 403
+    code: Forbidden
+    body: '{"message":"Forbidden"}'
+    header: 'x-amzn-errortype: ForbiddenException'
+    meaning: >-
+      Returned when the x-api-key header is absent, invalid, or the key is not entitled to
+      the requested resource. Observed on every path probed, including paths that do not
+      exist, so a 403 does NOT confirm the resource exists.
+    remediation: Request a private API key through https://www.crimeometer.com/#contactus and send it in the x-api-key header.
+    observed:
+      - url: https://api.crimeometer.com/v5/sex-offenders/records?zipcode=11212
+        status: 403
+      - url: https://api.crimeometer.com/v5/sex-offenders/location?lat=41.97&lon=-87.64
+        status: 403
+  - status: 403
+    code: MissingAuthenticationToken
+    body: '{"message":"Missing Authentication Token"}'
+    meaning: >-
+      Returned by AWS API Gateway when the request path matches no configured route.
+      Effectively a 404 in disguise; the status code is still 403.
+    remediation: Check the path and version prefix against the published Postman collection.
+    observed:
+      - url: https://api.crimeometer.com/v3
+        status: 403
+      - url: https://api.crimeometer.com/v3/openapi.json
+        status: 403
+gaps:
+  - >-
+    No 400, 401, 404, 429 or 5xx response is documented anywhere CrimeoMeter publishes, and
+    the edge collapses "no key", "bad key" and "no such route" onto a single 403 with an
+    untyped message. An agent cannot tell an auth failure from a wrong path without
+    out-of-band knowledge.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

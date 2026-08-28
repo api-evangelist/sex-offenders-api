@@ -1,0 +1,93 @@
+generated: '2026-08-28'
+method: searched
+source: >-
+  https://www.crimeometer.com/sex-offenders-api (request form, headers, response example),
+  the public Postman collection https://documenter.getpostman.com/view/12755833/TzK2auPn,
+  and live probes of api.crimeometer.com on 2026-08-28.
+provider: Sex Offenders API
+providerId: sex-offenders-api
+authentication:
+  style: api-key-header
+  header: x-api-key
+  issuance: manual — requested through the Contact Us form; no self-service key endpoint
+  transport: HTTPS only (TLS 1.3 observed; HTTP/2)
+  docs: https://www.crimeometer.com/sex-offenders-api
+  see: authentication/sex-offenders-api-authentication.yml
+request:
+  content_type_header_documented: 'Content-Type: application/json'
+  methods: [GET]
+  body: none — the entire published surface is query-parameter driven
+pagination:
+  style: page-number
+  request_param: page
+  response_fields:
+    total: sex_offenders_count
+    pages: pages_count
+  page_size_param: null
+  evidence: >-
+    pages_count and sex_offenders_count appear in the published response example; a page
+    query parameter appears on the Crime Data requests in the published Postman collection.
+    No page-size parameter, cursor, or Link header is documented, and the default page size
+    is not published.
+  gap: A consumer cannot control or predict page size.
+filtering:
+  exact_vs_fuzzy: >-
+    CrimeoMeter publishes paired parameters for exact matching — zipcode/exact_zipcode and
+    alias/exact_alias — implying the unprefixed forms are fuzzy or prefix matches. The
+    matching semantics are not stated in prose anywhere.
+  date_window: last_updated_after / last_updated_before, published in the form "YYYY-MM-DD HH:MM:SS"
+  geo: lat + lon + distance, distance published in the form "<number>mi"
+  datetime_inconsistency: >-
+    The Sex Offenders requests use space-separated "YYYY-MM-DD HH:MM:SS"; the Crime Data and
+    911 Calls requests in the same collection use ISO-8601 "YYYY-MM-DDTHH:MM:SS.000Z". Two
+    date formats coexist in one published collection.
+field_expansion:
+  supported: false
+sparse_fieldsets:
+  supported: false
+metadata:
+  supported: false
+request_id_tracing:
+  client_header: null
+  response_headers:
+    - x-amzn-requestid
+    - x-amz-apigw-id
+    - x-amz-cf-id
+  note: >-
+    AWS API Gateway and CloudFront request identifiers are returned on every response,
+    including errors, and are usable for support correlation. They are not documented by
+    CrimeoMeter.
+versioning:
+  style: path-prefix
+  current: v5
+  see: lifecycle/sex-offenders-api-lifecycle.yml
+errors:
+  envelope: '{"message": "<string>"}'
+  problem_json: false
+  see: errors/sex-offenders-api-problem-types.yml
+rate_limit_signaling:
+  headers_observed: []
+  documented: false
+  see: rate-limits/sex-offenders-api-rate-limits.yml
+idempotency:
+  supported: na
+  reason: Read-only surface — every published operation is a GET. No write path exists to make idempotent.
+dry_run_mode:
+  supported: na
+  reason: Read-only surface. A GET is its own dry run.
+reversibility:
+  applicable: false
+  grade: na
+  reason: >-
+    Every operation CrimeoMeter publishes for this API is a read. There is no create,
+    update, delete, purchase or subscription-mutating call in the contract or in the
+    published Postman collection, so there is nothing for an agent to take back. Recorded as
+    na rather than zero: the provider is not failing a check that does not apply to them.
+  write_surfaces: []
+  evidence:
+    - url: https://documenter.getpostman.com/api/collections/12755833/TzK2auPn
+      status: 200
+      note: All 21 published requests across all three product folders are GET.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

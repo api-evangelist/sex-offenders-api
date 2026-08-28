@@ -1,15 +1,47 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/sex-offenders-api-openapi.yml
+generated: '2026-08-28'
+method: searched
+source: >-
+  https://www.crimeometer.com/sex-offenders-api (HEADERS block: Content-Type and x-api-key),
+  the public Postman collection https://documenter.getpostman.com/view/12755833/TzK2auPn
+  (every one of its 21 requests carries an x-api-key header), and
+  openapi/sex-offenders-api-sex-offenders-api-openapi.yml.
+docs: https://www.crimeometer.com/sex-offenders-api
 summary:
   types:
-  - apiKey
+    - apiKey
   api_key_in:
-  - header
+    - header
+  oauth: false
+  oidc: false
+  mtls: false
 schemes:
-- name: apiKeyAuth
-  type: apiKey
-  in: header
-  parameter: x-api-key
-  sources:
-  - openapi/sex-offenders-api-openapi.yml
+  - name: apiKeyAuth
+    type: apiKey
+    in: header
+    parameter: x-api-key
+    required: true
+    issuance: manual
+    issuance_url: https://www.crimeometer.com/#contactus
+    issuance_note: >-
+      CrimeoMeter's own wording on the product page: 'x-api-key: (Request your private
+      api-key via the "Contact Us" form)'. There is no self-service key endpoint, no
+      developer console key page, and no documented key rotation, expiry or scoping.
+    sources:
+      - https://www.crimeometer.com/sex-offenders-api
+      - https://documenter.getpostman.com/view/12755833/TzK2auPn
+      - openapi/sex-offenders-api-sex-offenders-api-openapi.yml
+transport:
+  https_required: true
+  tls_version_observed: TLSv1.3
+  see: security/sex-offenders-api-domain-security.yml
+failure_modes:
+  - status: 403
+    body: '{"message":"Forbidden"}'
+    meaning: Missing, invalid or unentitled key. See errors/sex-offenders-api-problem-types.yml.
+gaps:
+  - No key rotation, expiry or revocation policy is published.
+  - No scopes or per-endpoint entitlements are documented; one key appears to grant the whole subscription.
+  - Key issuance is a human sales loop, so an agent cannot self-onboard.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

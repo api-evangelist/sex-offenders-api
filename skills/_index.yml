@@ -1,0 +1,27 @@
+generated: '2026-08-28'
+method: generated
+source: >-
+  Authored from openapi/sex-offenders-api-sex-offenders-api-openapi.yml (transcribed from
+  CrimeoMeter's public Postman collection), conventions/, errors/ and data-model/ in this
+  repo. Every operationId, parameter and field referenced in these skills exists in that
+  contract; nothing was invented.
+provider: Sex Offenders API
+providerId: sex-offenders-api
+skills:
+  - name: search-sex-offender-registry-by-name
+    file: skills/sex-offenders-api-search-registry-by-name.md
+    operations: [getSexOffenderRecords]
+    summary: Identity and zip-code lookup, exact-vs-fuzzy matching, pagination, and the record's encoding traps.
+  - name: search-sex-offender-registry-near-a-location
+    file: skills/sex-offenders-api-search-registry-near-a-location.md
+    operations: [getSexOffendersByLocation]
+    summary: Radius search around a lat/lon point, distance units, and change detection via last_updated_after.
+notes:
+  - Both skills are read-only. There is no write operation in this API to package a skill around.
+  - >-
+    Both skills open by stating that the API key is issued by hand through a contact form.
+    That is the binding constraint on agent use of this provider and it belongs in the skill,
+    not in a footnote.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

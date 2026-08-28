@@ -1,0 +1,54 @@
+generated: '2026-08-28'
+method: searched
+source: >-
+  npm registry search, PyPI, RubyGems, crates.io, Packagist and GitHub code search for
+  "crimeometer" on 2026-08-28, plus the CrimeoMeter site (www.crimeometer.com/products,
+  /docs) and the published Postman collection. CrimeoMeter publishes no first-party client
+  library in any registry and operates no GitHub organisation (api.github.com/orgs/crimeometer -> 404).
+provider: Sex Offenders API
+providerId: sex-offenders-api
+official_package_count: 0
+package_count: 1
+summary: >-
+  Zero first-party SDKs. Integration is raw HTTPS with an x-api-key header. The only
+  registry artifact carrying the CrimeoMeter name is a third-party Pipedream connector
+  whose last release predates the v5 Sex Offenders API published in CrimeoMeter's own
+  Postman collection (2024-07-26) by more than a year — an abandonment signal on the
+  only wrapper that exists.
+packages:
+  - language: javascript
+    registry: npm
+    name: '@pipedream/crimeometer'
+    url: https://www.npmjs.com/package/@pipedream/crimeometer
+    install: npm install @pipedream/crimeometer
+    official: false
+    vendor: Pipedream
+    version: 0.0.3
+    published: '2023-05-17'
+    note: >-
+      Third-party Pipedream integration component, not published or endorsed by CrimeoMeter.
+      Version and date read from registry.npmjs.org search metadata on 2026-08-28.
+registries_checked:
+  - registry: npm
+    query: crimeometer
+    first_party_hits: 0
+  - registry: pypi
+    query: crimeometer
+    status: 404
+    first_party_hits: 0
+  - registry: rubygems
+    query: crimeometer
+    first_party_hits: 0
+  - registry: crates.io
+    query: crimeometer
+    first_party_hits: 0
+  - registry: packagist
+    query: crimeometer
+    first_party_hits: 0
+  - registry: github
+    query: crimeometer
+    first_party_hits: 0
+    note: No crimeometer GitHub organisation exists (HTTP 404).
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

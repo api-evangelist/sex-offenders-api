@@ -1,0 +1,68 @@
+generated: '2026-08-28'
+method: searched
+source: >-
+  https://www.crimeometer.com/llms.txt advertises the endpoint; confirmed by a live
+  anonymous JSON-RPC tools/list POST to https://www.crimeometer.com/_api/mcp on 2026-08-28
+  (HTTP 200, application/json, 9 tools returned with inputSchema).
+name: CrimeoMeter Site MCP
+provider: Sex Offenders API
+providerId: sex-offenders-api
+status: live
+deployment:
+  mode: remote
+  endpoint: https://www.crimeometer.com/_api/mcp
+  auth: none
+  verified: probed
+description: >-
+  CrimeoMeter serves a live, anonymous, remote MCP endpoint from its own domain. IMPORTANT
+  SCOPE NOTE: this is the Wix Site MCP that the Wix platform provisions for every site it
+  hosts (crimeometer.com runs on Wix), not a CrimeoMeter-authored server for the Sex
+  Offenders API. Its tools read the public website, the site's business details and the Wix
+  business-solution APIs installed on it. NONE of the nine tools calls
+  api.crimeometer.com, and no tool exposes sex-offender records. An agent can reach
+  CrimeoMeter over MCP today, but only to read the marketing site — the Sex Offenders API
+  itself remains reachable solely over HTTPS + x-api-key.
+authored_by: platform (Wix)
+protocol:
+  transport: streamable-http
+  jsonrpc: '2.0'
+evidence:
+  - url: https://www.crimeometer.com/llms.txt
+    status: 200
+    note: Declares the Site MCP endpoint and lists 7 tools by name.
+  - url: https://www.crimeometer.com/_api/mcp
+    status: 200
+    method: POST tools/list
+    note: Returned 9 tools with full inputSchema; no authentication challenge.
+tools:
+  - name: GetBusinessDetails
+    parameters: []
+    description: Business and site details for CrimeoMeter (timezone, email, phone, address).
+  - name: SearchInSite
+    parameters: [searchTerm]
+    description: Full-text search across the public crimeometer.com site.
+  - name: SearchSiteApiDocs
+    parameters: [searchTerm]
+    description: Search the Wix business-solution API documentation installed on this site.
+  - name: GenerateVisitorToken
+    parameters: []
+    description: Create a visitor session and obtain a visitor access token for the site.
+  - name: CallWixSiteAPI
+    parameters: [visitorToken, url, method, body]
+    description: Call a Wix site API method on a visitor's behalf.
+  - name: ExecuteWixAPI
+    parameters: [code, reason, hasMutations, sourceDocUrls, visitorToken]
+    description: Run JavaScript against the Wix REST API on the site.
+  - name: ReadFullDocsArticle
+    parameters: [articleUrl]
+    description: Fetch a complete article from the Wix developer documentation portal.
+  - name: ReadFullDocsMethodSchema
+    parameters: [articleUrl, reason]
+    description: Fetch the full schema for a Wix API method.
+  - name: BrowseWixRESTDocsMenu
+    parameters: [menuUrl, reason]
+    description: Browse the Wix REST API documentation menu hierarchy.
+raw_tools_list: mcp/sex-offenders-api-mcp-tools-list.json
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

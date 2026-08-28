@@ -1,0 +1,101 @@
+generated: '2026-08-28'
+method: searched
+source: >-
+  Field set transcribed from the response example CrimeoMeter publishes on
+  https://www.crimeometer.com/sex-offenders-api, cross-checked against the query parameters
+  in the public Postman collection (https://documenter.getpostman.com/view/12755833/TzK2auPn)
+  and the schemas in openapi/sex-offenders-api-sex-offenders-api-openapi.yml.
+provider: Sex Offenders API
+providerId: sex-offenders-api
+summary: >-
+  A single-entity model. The API returns a flat, denormalised SexOffender record inside a
+  count-and-pages envelope. There are no ids, no cross-resource references, and no
+  relationships to other CrimeoMeter entities (crime incidents, calls for service, CSI) —
+  the Sex Offenders surface does not join to the rest of the platform.
+entities:
+  - name: SexOffenderRecords
+    kind: envelope
+    description: Pagination envelope returned by both published operations.
+    fields:
+      - name: sex_offenders_count
+        type: integer
+        description: Total number of matching records.
+      - name: pages_count
+        type: integer
+        description: Number of result pages available.
+      - name: sex_offenders
+        type: array
+        description: The matching records for this page.
+  - name: SexOffender
+    kind: resource
+    description: One registered sex offender record, as published by the source state registry and normalised by CrimeoMeter.
+    identifier: none — the published example exposes no stable record id, only natural keys (name + birthdate + address)
+    pii: true
+    pii_note: >-
+      Every record names a real individual and carries birthdate, home address,
+      photograph, physical description, aliases and charges. Use is bound by CrimeoMeter's
+      Terms of Service (www.crimeometer.com/tos) and by the disclaimer linked from the
+      product page.
+    field_groups:
+      identity:
+        - sex_offender_name
+        - sex_offender_first_name
+        - sex_offender_middle_name
+        - sex_offender_last_name
+        - sex_offender_aliases
+        - sex_offender_birthdate
+        - sex_offender_age
+      physical:
+        - sex_offender_sex
+        - sex_offender_race
+        - sex_offender_height
+        - sex_offender_weight
+        - sex_offender_hair
+        - sex_offender_eyes
+        - sex_offender_marks
+        - sex_offender_image_url
+      location:
+        - sex_offender_state
+        - sex_offender_location
+        - sex_offender_zipcode
+        - sex_offender_address_line1
+        - sex_offender_address_line2
+        - sex_offender_lat
+        - sex_offender_lon
+      registry_status:
+        - sex_offender_charges
+        - sex_offender_changes
+        - sex_offender_is_predator
+        - sex_offender_is_absconder
+      provenance:
+        - sex_offender_created
+        - sex_offender_last_updated
+        - sex_offender_last_synced
+        - sex_offender_is_synced
+    type_notes:
+      - >-
+        sex_offender_is_predator and sex_offender_is_absconder are published as the STRINGS
+        "true"/"false" while sex_offender_is_synced is a real boolean — three boolean-ish
+        fields, two encodings, in one published example.
+      - sex_offender_weight is published as a string ("185"), sex_offender_age as an integer.
+      - sex_offender_height is free text ("6ft 00in"), not a number with a unit.
+      - sex_offender_marks, sex_offender_aliases and sex_offender_charges are semicolon-delimited strings, not arrays.
+relationships: []
+relationship_note: >-
+  No has_one/has_many/belongs_to edge exists. The record embeds everything it needs and
+  references no other entity by id — there is no join key back to CrimeoMeter's crime
+  incident, calls-for-service or CSI resources.
+queryable_by:
+  - zipcode
+  - exact_zipcode
+  - first_name
+  - last_name
+  - birthdate
+  - alias
+  - exact_alias
+  - last_updated_after
+  - last_updated_before
+  - lat + lon + distance
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

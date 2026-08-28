@@ -1,0 +1,62 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements — CrimeoMeter Sex Offenders API
+  version: 1.0.0
+extends: ../openapi/sex-offenders-api-sex-offenders-api-openapi.yml
+x-provenance:
+  generated: '2026-08-28'
+  method: generated
+  source: >-
+    Captures the API Evangelist enrichment additions applied on top of the contract
+    transcribed from CrimeoMeter's public Postman collection. Every value below traces to a
+    CrimeoMeter-published page or a live probe recorded in this repo; nothing is invented.
+actions:
+  - target: $.info
+    description: Attach provider-published contact, terms and privacy links.
+    update:
+      x-provider: CityCop Corporation dba CrimeoMeter
+      x-documentation: https://www.crimeometer.com/sex-offenders-api
+      x-api-reference: https://documenter.getpostman.com/view/12755833/TzK2auPn
+      x-terms-of-service: https://www.crimeometer.com/tos
+      x-privacy-policy: https://www.crimeometer.com/privacy-policy
+      x-key-request: https://www.crimeometer.com/#contactus
+  - target: $.info
+    description: Record the version disagreement between the product page (v3) and the published Postman collection (v5).
+    update:
+      x-version-disagreement:
+        product_page: v3
+        published_postman_collection: v5
+        observed: '2026-08-28'
+        note: >-
+          Both are CrimeoMeter-published. The Postman collection is dated 2024-07-26 and
+          carries the richer parameter set, so v5 is treated as current here.
+  - target: $.paths['/sex-offenders/records'].get
+    description: Mark the operation read-only, non-reversible and safe for autonomous agent execution under a key.
+    update:
+      x-agentic-access:
+        action-class: connected
+        consequence: read
+        subject: optional
+      x-reversibility: na
+      x-idempotency: na
+      x-pii: >-
+        Returns names, birthdates, home addresses, photographs and physical descriptions of
+        named individuals from state sex offender registries. Downstream use is constrained
+        by CrimeoMeter's terms of service and by state registry disclaimers.
+  - target: $.paths['/sex-offenders/location'].get
+    description: Mark the operation read-only, non-reversible and safe for autonomous agent execution under a key.
+    update:
+      x-agentic-access:
+        action-class: connected
+        consequence: read
+        subject: optional
+      x-reversibility: na
+      x-idempotency: na
+      x-pii: >-
+        Returns names, birthdates, home addresses, photographs and physical descriptions of
+        named individuals from state sex offender registries.
+  - target: $.components.securitySchemes.apiKeyAuth
+    description: Record that key issuance is manual (no self-service endpoint).
+    update:
+      x-issuance: manual
+      x-issuance-url: https://www.crimeometer.com/#contactus

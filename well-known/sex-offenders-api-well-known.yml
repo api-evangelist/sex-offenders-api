@@ -1,0 +1,66 @@
+generated: '2026-08-28'
+method: probed
+source: Live unauthenticated GETs on 2026-08-28 against every host in apis.yml and openapi servers[].
+summary: >-
+  No /.well-known document is served on either host. www.crimeometer.com runs on Wix, whose
+  edge answers every unmatched /.well-known/* path with HTTP 400 and an HTML error shell;
+  api.crimeometer.com is an AWS API Gateway that answers every unmatched path with HTTP 403
+  {"message":"Forbidden"}. Neither is a document, so no WellKnown pointer is emitted.
+hosts:
+  - host: www.crimeometer.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 400
+        file: null
+        note: HTML error shell, not a document.
+      - path: /.well-known/openid-configuration
+        status: 400
+        file: null
+      - path: /.well-known/oauth-authorization-server
+        status: 400
+        file: null
+      - path: /.well-known/oauth-protected-resource
+        status: 400
+        file: null
+      - path: /.well-known/api-catalog
+        status: 400
+        file: null
+      - path: /.well-known/ai-plugin.json
+        status: 400
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 400
+        file: null
+      - path: /.well-known/agent.json
+        status: 400
+        file: null
+  - host: api.crimeometer.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 403
+        file: null
+        note: 'AWS API Gateway blanket response {"message":"Forbidden"} on every unmatched path.'
+      - path: /.well-known/openid-configuration
+        status: 403
+        file: null
+      - path: /.well-known/oauth-authorization-server
+        status: 403
+        file: null
+      - path: /.well-known/oauth-protected-resource
+        status: 403
+        file: null
+      - path: /.well-known/api-catalog
+        status: 403
+        file: null
+      - path: /.well-known/ai-plugin.json
+        status: 403
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 403
+        file: null
+      - path: /.well-known/agent.json
+        status: 403
+        file: null
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

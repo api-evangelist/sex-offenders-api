@@ -1,0 +1,58 @@
+generated: '2026-08-28'
+method: searched
+source: >-
+  www.crimeometer.com (product page, products overview, pricing, tos, privacy-policy,
+  pages-sitemap.xml), the public Postman collection published 2024-07-26, and live probes of
+  api.crimeometer.com on 2026-08-28.
+provider: Sex Offenders API
+providerId: sex-offenders-api
+versioning:
+  scheme: path-prefix
+  pattern: https://api.crimeometer.com/v{n}/...
+  current: v5
+  observed_versions:
+    - version: v2
+      surface: Crime Data / Crime Stats / CSI operations in the published Postman collection
+    - version: v3
+      surface: 911 Calls operations in the published Postman collection; also the version shown in the Sex Offenders API product-page example
+    - version: v5
+      surface: Sex Offenders operations in the published Postman collection (records + location)
+  finding: >-
+    CrimeoMeter's own two published sources disagree about the current Sex Offenders
+    version. https://www.crimeometer.com/sex-offenders-api still shows a v3 request example
+    with only zipcode and name; the public Postman collection published 2024-07-26 shows v5
+    with nine query parameters and a second operation (/sex-offenders/location) that the
+    product page does not mention at all. Live probes cannot arbitrate — the AWS API Gateway
+    edge returns 403 Forbidden for v3, v4, v5, v6 and for paths that plainly do not exist.
+    A consumer reading only the product page would build against a stale contract.
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  deprecated_operations: []
+  evidence: >-
+    No deprecation, sunset or migration page exists in pages-sitemap.xml, and no RFC 8594
+    Sunset/Deprecation header was observed on any probed response. v2, v3 and v5 are all
+    still advertised side by side in the published collection with no end-of-life notice.
+status_page:
+  published: false
+  evidence: 'https://www.crimeometer.com/status -> 404; no status.crimeometer.com; no third-party status page linked from any site page.'
+sla:
+  published: false
+  evidence: >-
+    The pricing page advertises "Dedicated Support" on the Commercial Subscription but
+    publishes no uptime target, credit schedule or response-time commitment. The Terms of
+    Service (www.crimeometer.com/tos) is the only contractual document published.
+changelog:
+  published: false
+  evidence: 'https://www.crimeometer.com/changelog -> 404; the blog (www.crimeometer.com/blog) is crime-trend editorial, not release notes.'
+support:
+  channels:
+    - type: contact-form
+      url: https://www.crimeometer.com/#contactus
+    - type: phone
+      value: '+1 (415) 234-3984'
+  note: No developer forum, no public issue tracker, no GitHub organisation.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

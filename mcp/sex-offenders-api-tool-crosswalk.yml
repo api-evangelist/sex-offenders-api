@@ -1,0 +1,59 @@
+generated: '2026-08-28'
+method: derived
+source: >-
+  Derived by binding the 9 tools returned live by https://www.crimeometer.com/_api/mcp
+  (tools/list, 2026-08-28) against the operations in
+  openapi/sex-offenders-api-sex-offenders-api-openapi.yml.
+provider: Sex Offenders API
+providerId: sex-offenders-api
+summary: >-
+  The crosswalk is empty on purpose and that is the finding. CrimeoMeter's live MCP surface
+  is the Wix platform Site MCP; not one of its tools binds to a CrimeoMeter REST operation.
+  Both published Sex Offenders API operations are REST-only — an agent that speaks MCP can
+  read the CrimeoMeter website but cannot query a single sex offender record through it.
+surfaces:
+  openapi:
+    file: openapi/sex-offenders-api-sex-offenders-api-openapi.yml
+    base: https://api.crimeometer.com/v5
+    gated: true
+    note: Every operation requires an x-api-key issued through the Contact Us form; live probes return 403 Forbidden.
+  mcp:
+    url: https://www.crimeometer.com/_api/mcp
+    gated: false
+    note: Anonymous. Wix platform Site MCP, not authored by CrimeoMeter.
+  graphql: null
+crosswalk: []
+mcp_only:
+  - tool: GetBusinessDetails
+    reason: Wix platform site tool; reads site business metadata, no CrimeoMeter REST equivalent.
+  - tool: SearchInSite
+    reason: Wix platform site search over crimeometer.com HTML; no REST equivalent.
+  - tool: SearchSiteApiDocs
+    reason: Searches Wix business-solution docs, not the CrimeoMeter API reference.
+  - tool: GenerateVisitorToken
+    reason: Wix visitor session bootstrap; unrelated to the x-api-key scheme the REST API uses.
+  - tool: CallWixSiteAPI
+    reason: Generic Wix REST proxy scoped to wixapis.com; cannot reach api.crimeometer.com.
+  - tool: ExecuteWixAPI
+    reason: Generic Wix REST code runner; cannot reach api.crimeometer.com.
+  - tool: ReadFullDocsArticle
+    reason: Reads dev.wix.com documentation.
+  - tool: ReadFullDocsMethodSchema
+    reason: Reads dev.wix.com method schemas.
+  - tool: BrowseWixRESTDocsMenu
+    reason: Browses dev.wix.com documentation menus.
+rest_only:
+  - operationId: getSexOffenderRecords
+    reason: No MCP tool fronts the sex offender record search.
+  - operationId: getSexOffendersByLocation
+    reason: No MCP tool fronts the sex offender radius search.
+coverage:
+  mcp_tools: 9
+  rest_operations: 2
+  bound: 0
+  mcp_only: 9
+  rest_only: 2
+  bound_percent_of_rest: 0
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
