@@ -1,0 +1,21 @@
+{
+  "repo": "sex-offenders-api",
+  "feeds": [
+    {
+      "source": "https://www.crimeometer.com/pricing",
+      "feed_url": "https://www.crimeometer.com/pricing",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
+      "source": "https://www.crimeometer.com/blog",
+      "feed_url": "https://www.crimeometer.com/blog-feed.xml",
+      "title": "",
+      "saved": 2,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 2,
+  "fetched": "2026-08-30T22:33:40Z"
+}
