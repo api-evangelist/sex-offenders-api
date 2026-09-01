@@ -1,15 +1,15 @@
 ---
 kin_checks:
   slug: sex-offenders-api
-  schema_version: 0.16.0
-  scored_at: '2026-08-29'
-  run_ts: 2026-08-29T230545
+  schema_version: 0.17.2
+  scored_at: '2026-09-01'
+  run_ts: 2026-09-01T063623
   note: Actionable checks only (missed + partial). earned/na are every other check
-    in rubric/scoring-0.16.0.yml; counts below let you verify that.
+    in rubric/scoring-0.17.2.yml; counts below let you verify that.
   counts:
     total: 130
-    earned: 49
-    partial: 5
+    earned: 47
+    partial: 7
     missed: 50
     na: 26
   checks:
@@ -117,9 +117,17 @@ kin_checks:
     status: missed
   - id: agentic_commerce
     status: missed
+  - id: support_channel
+    status: partial
+    earned: 1.0
+    detail: pointer liveness 0.5
   - id: plans_present
     status: partial
     earned: 2.0
+  - id: sign_up_present
+    status: partial
+    earned: 2.5
+    detail: pointer liveness 0.5
   - id: agentic_access
     status: partial
     earned: 2.5
