@@ -1,94 +1,94 @@
 openapi: 3.2.0
 info:
   title: CrimeoMeter Sex Offenders API
-  description: |
-    The Sex Offenders API by CrimeoMeter (CityCop Corporation dba CrimeoMeter) returns
-    registered sex offender records across the United States, searchable by zip code,
-    name, alias, birthdate, last-updated window, or by latitude/longitude radius.
+  description: 'The Sex Offenders API by CrimeoMeter (CityCop Corporation dba CrimeoMeter) returns
 
-    PROVENANCE: paths, HTTP methods, query parameters and the x-api-key header are
-    transcribed verbatim from CrimeoMeter's own PUBLIC Postman collection
-    "CrimeoMeter API" (published 2024-07-26), reached from the Documentation link on
-    https://www.crimeometer.com/docs and served at
-    https://documenter.getpostman.com/view/12755833/TzK2auPn
-    (machine-readable at https://documenter.getpostman.com/api/collections/12755833/TzK2auPn).
-    The 200 response schema is derived from the single response example CrimeoMeter
-    publishes on https://www.crimeometer.com/sex-offenders-api — that example is shown
-    against the v3 path, so field-level fidelity is asserted only for the documented
-    example, not for every v5 field. Error responses are transcribed from live
-    unauthenticated probes of api.crimeometer.com on 2026-08-28.
-    No response body was invented.
+    registered sex offender records across the United States, searchable by zip code,
+
+    name, alias, birthdate, last-updated window, or by latitude/longitude radius.'
   version: v5
   contact:
     name: CrimeoMeter
     url: https://www.crimeometer.com/#contactus
   termsOfService: https://www.crimeometer.com/tos
 servers:
-  - url: https://api.crimeometer.com/v5
-    description: Production v5 — the version published in CrimeoMeter's public Postman collection (2024-07-26)
-  - url: https://api.crimeometer.com/v3
-    description: v3 — the version still documented on the Sex Offenders API product page (www.crimeometer.com/sex-offenders-api)
+- url: https://api.crimeometer.com/v5
+  description: Production v5 — the version published in CrimeoMeter's public Postman collection (2024-07-26)
+- url: https://api.crimeometer.com/v3
+  description: v3 — the version still documented on the Sex Offenders API product page (www.crimeometer.com/sex-offenders-api)
 security:
-  - apiKeyAuth: []
+- apiKeyAuth: []
 tags:
-  - name: Sex Offenders
-    description: Registered sex offender records across the United States.
+- name: Sex Offenders
+  description: Registered sex offender records across the United States.
 paths:
   /sex-offenders/records:
     get:
-      tags: [Sex Offenders]
+      tags:
+      - Sex Offenders
       summary: Search registered sex offender records
-      description: |
-        Returns registered sex offender records filtered by zip code, name, alias,
+      description: 'Returns registered sex offender records filtered by zip code, name, alias,
+
         birthdate, or a last-updated window. Parameter set transcribed from the
-        published Postman collection requests.
+
+        published Postman collection requests.'
       operationId: getSexOffenderRecords
       parameters:
-        - in: query
-          name: zipcode
-          schema: { type: string }
-          description: Zip code to search (fuzzy/prefix match as published).
-          example: '11212'
-        - in: query
-          name: exact_zipcode
-          schema: { type: string }
-          description: Zip code to match exactly.
-          example: '11212'
-        - in: query
-          name: first_name
-          schema: { type: string }
-          description: Offender first name.
-          example: CHRISTOPHER
-        - in: query
-          name: last_name
-          schema: { type: string }
-          description: Offender last name.
-          example: ANDREWS
-        - in: query
-          name: birthdate
-          schema: { type: string, format: date }
-          description: Offender birthdate, YYYY-MM-DD.
-          example: '1975-02-11'
-        - in: query
-          name: alias
-          schema: { type: string }
-          description: Known alias to search (fuzzy match as published).
-          example: 'HARPER, MICHAEL'
-        - in: query
-          name: exact_alias
-          schema: { type: string }
-          description: Known alias to match exactly.
-          example: 'HARPER, MICHAEL'
-        - in: query
-          name: last_updated_after
-          schema: { type: string }
-          description: Lower bound on sex_offender_last_updated, published in the form "YYYY-MM-DD HH:MM:SS".
-          example: '2026-01-01 00:00:00'
-        - in: query
-          name: last_updated_before
-          schema: { type: string }
-          description: Upper bound on sex_offender_last_updated, published in the form "YYYY-MM-DD HH:MM:SS".
-          example: '2027-01-01 00:00:00'
+      - in: query
+        name: zipcode
+        schema:
+          type: string
+        description: Zip code to search (fuzzy/prefix match as published).
+        example: '11212'
+      - in: query
+        name: exact_zipcode
+        schema:
+          type: string
+        description: Zip code to match exactly.
+        example: '11212'
+      - in: query
+        name: first_name
+        schema:
+          type: string
+        description: Offender first name.
+        example: CHRISTOPHER
+      - in: query
+        name: last_name
+        schema:
+          type: string
+        description: Offender last name.
+        example: ANDREWS
+      - in: query
+        name: birthdate
+        schema:
+          type: string
+          format: date
+        description: Offender birthdate, YYYY-MM-DD.
+        example: '1975-02-11'
+      - in: query
+        name: alias
+        schema:
+          type: string
+        description: Known alias to search (fuzzy match as published).
+        example: HARPER, MICHAEL
+      - in: query
+        name: exact_alias
+        schema:
+          type: string
+        description: Known alias to match exactly.
+        example: HARPER, MICHAEL
+      - in: query
+        name: last_updated_after
+        schema:
+          type: string
+        description: Lower bound on sex_offender_last_updated, published in the form "YYYY-MM-DD HH:MM:SS".
+        example: '2026-01-01 00:00:00'
+      - in: query
+        name: last_updated_before
+        schema:
+          type: string
+        description: Upper bound on sex_offender_last_updated, published in the form "YYYY-MM-DD HH:MM:SS".
+        example: '2027-01-01 00:00:00'
       responses:
         '200':
           description: Matching sex offender records.
@@ -97,51 +97,59 @@ paths:
               schema:
                 $ref: '#/components/schemas/SexOffenderRecords'
         '403':
-          description: >-
-            Returned by the AWS API Gateway edge when the x-api-key header is missing,
-            invalid, or the key is not entitled to the resource. Observed live on
-            2026-08-28 (x-amzn-errortype: ForbiddenException).
+          description: 'Returned by the AWS API Gateway edge when the x-api-key header is missing, invalid, or the key is not entitled to the resource. Observed live on 2026-08-28 (x-amzn-errortype: ForbiddenException).'
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/Error' }
-              example: { message: Forbidden }
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: Forbidden
   /sex-offenders/location:
     get:
-      tags: [Sex Offenders]
+      tags:
+      - Sex Offenders
       summary: Search registered sex offenders around a location
-      description: |
-        Returns registered sex offender records within a radius of a latitude/longitude
+      description: 'Returns registered sex offender records within a radius of a latitude/longitude
+
         point, optionally constrained to a last-updated window. Parameter set transcribed
-        from the published Postman collection requests.
+
+        from the published Postman collection requests.'
       operationId: getSexOffendersByLocation
       parameters:
-        - in: query
-          name: lat
-          required: true
-          schema: { type: number, format: double }
-          description: Latitude of the search centre.
-          example: 41.9777476245164
-        - in: query
-          name: lon
-          required: true
-          schema: { type: number, format: double }
-          description: Longitude of the search centre.
-          example: -87.6472903440513
-        - in: query
-          name: distance
-          schema: { type: string }
-          description: Search radius, published in the form "<number>mi" (e.g. 5mi, 10mi).
-          example: 10mi
-        - in: query
-          name: last_updated_after
-          schema: { type: string }
-          description: Lower bound on sex_offender_last_updated, published in the form "YYYY-MM-DD HH:MM:SS".
-          example: '2024-01-01 00:00:00'
-        - in: query
-          name: last_updated_before
-          schema: { type: string }
-          description: Upper bound on sex_offender_last_updated, published in the form "YYYY-MM-DD HH:MM:SS".
-          example: '2025-01-01 00:00:00'
+      - in: query
+        name: lat
+        required: true
+        schema:
+          type: number
+          format: double
+        description: Latitude of the search centre.
+        example: 41.9777476245164
+      - in: query
+        name: lon
+        required: true
+        schema:
+          type: number
+          format: double
+        description: Longitude of the search centre.
+        example: -87.6472903440513
+      - in: query
+        name: distance
+        schema:
+          type: string
+        description: Search radius, published in the form "<number>mi" (e.g. 5mi, 10mi).
+        example: 10mi
+      - in: query
+        name: last_updated_after
+        schema:
+          type: string
+        description: Lower bound on sex_offender_last_updated, published in the form "YYYY-MM-DD HH:MM:SS".
+        example: '2024-01-01 00:00:00'
+      - in: query
+        name: last_updated_before
+        schema:
+          type: string
+        description: Upper bound on sex_offender_last_updated, published in the form "YYYY-MM-DD HH:MM:SS".
+        example: '2025-01-01 00:00:00'
       responses:
         '200':
           description: Matching sex offender records near the supplied point.
@@ -150,35 +158,100 @@ paths:
               schema:
                 $ref: '#/components/schemas/SexOffenderRecords'
         '403':
-          description: >-
-            Returned by the AWS API Gateway edge when the x-api-key header is missing or
-            invalid. Observed live on 2026-08-28.
+          description: Returned by the AWS API Gateway edge when the x-api-key header is missing or invalid. Observed live on 2026-08-28.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/Error' }
-              example: { message: Forbidden }
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                message: Forbidden
 components:
-  securitySchemes:
-    apiKeyAuth:
-      type: apiKey
-      in: header
-      name: x-api-key
-      description: >-
-        Private API key issued by CrimeoMeter. Requested through the "Contact Us" form
-        on www.crimeometer.com; there is no self-service key issuance endpoint.
   schemas:
-    Error:
+    SexOffender:
       type: object
-      description: Error envelope observed on live unauthenticated calls (AWS API Gateway shape).
+      description: Field set transcribed from the single published response example. Types are inferred from the example values; no field was added that the example does not show.
       properties:
-        message:
+        sex_offender_state:
           type: string
-          examples: [Forbidden, Missing Authentication Token]
+          description: Two-letter US state code.
+        sex_offender_location:
+          type: string
+          description: City or locality.
+        sex_offender_zipcode:
+          type: string
+        sex_offender_lat:
+          type: number
+          format: double
+        sex_offender_lon:
+          type: number
+          format: double
+        sex_offender_name:
+          type: string
+          description: Full name as registered.
+        sex_offender_first_name:
+          type: string
+        sex_offender_middle_name:
+          type: string
+        sex_offender_last_name:
+          type: string
+        sex_offender_birthdate:
+          type: string
+          format: date
+        sex_offender_age:
+          type: integer
+        sex_offender_address_line1:
+          type: string
+        sex_offender_address_line2:
+          type: string
+        sex_offender_sex:
+          type: string
+        sex_offender_race:
+          type: string
+        sex_offender_height:
+          type: string
+          description: Published as free text, e.g. "6ft 00in".
+        sex_offender_weight:
+          type: string
+          description: Published as a string in the example.
+        sex_offender_hair:
+          type: string
+        sex_offender_eyes:
+          type: string
+        sex_offender_marks:
+          type: string
+          description: Semicolon-delimited scars/marks/tattoos.
+        sex_offender_aliases:
+          type: string
+          description: Semicolon-delimited known aliases.
+        sex_offender_charges:
+          type: string
+          description: Semicolon-delimited registered charges.
+        sex_offender_changes:
+          type: string
+          description: Most recent registered change record.
+        sex_offender_is_predator:
+          type: string
+          description: Published as the string "true"/"false" in the example.
+        sex_offender_is_absconder:
+          type: string
+          description: Published as the string "true"/"false" in the example.
+        sex_offender_image_url:
+          type: string
+          format: uri
+        sex_offender_last_updated:
+          type: string
+          format: date-time
+        sex_offender_created:
+          type: string
+          format: date-time
+        sex_offender_last_synced:
+          type: string
+          format: date-time
+        sex_offender_is_synced:
+          type: boolean
     SexOffenderRecords:
       type: object
-      description: >-
-        Envelope derived from the response example CrimeoMeter publishes on
-        https://www.crimeometer.com/sex-offenders-api.
+      description: Envelope derived from the response example CrimeoMeter publishes on https://www.crimeometer.com/sex-offenders-api.
       properties:
         sex_offenders_count:
           type: integer
@@ -188,40 +261,20 @@ components:
           description: Number of result pages available for the query.
         sex_offenders:
           type: array
-          items: { $ref: '#/components/schemas/SexOffender' }
-    SexOffender:
+          items:
+            $ref: '#/components/schemas/SexOffender'
+    Error:
       type: object
-      description: >-
-        Field set transcribed from the single published response example. Types are
-        inferred from the example values; no field was added that the example does not show.
+      description: Error envelope observed on live unauthenticated calls (AWS API Gateway shape).
       properties:
-        sex_offender_state: { type: string, description: Two-letter US state code. }
-        sex_offender_location: { type: string, description: City or locality. }
-        sex_offender_zipcode: { type: string }
-        sex_offender_lat: { type: number, format: double }
-        sex_offender_lon: { type: number, format: double }
-        sex_offender_name: { type: string, description: Full name as registered. }
-        sex_offender_first_name: { type: string }
-        sex_offender_middle_name: { type: string }
-        sex_offender_last_name: { type: string }
-        sex_offender_birthdate: { type: string, format: date }
-        sex_offender_age: { type: integer }
-        sex_offender_address_line1: { type: string }
-        sex_offender_address_line2: { type: string }
-        sex_offender_sex: { type: string }
-        sex_offender_race: { type: string }
-        sex_offender_height: { type: string, description: 'Published as free text, e.g. "6ft 00in".' }
-        sex_offender_weight: { type: string, description: Published as a string in the example. }
-        sex_offender_hair: { type: string }
-        sex_offender_eyes: { type: string }
-        sex_offender_marks: { type: string, description: Semicolon-delimited scars/marks/tattoos. }
-        sex_offender_aliases: { type: string, description: Semicolon-delimited known aliases. }
-        sex_offender_charges: { type: string, description: Semicolon-delimited registered charges. }
-        sex_offender_changes: { type: string, description: Most recent registered change record. }
-        sex_offender_is_predator: { type: string, description: Published as the string "true"/"false" in the example. }
-        sex_offender_is_absconder: { type: string, description: Published as the string "true"/"false" in the example. }
-        sex_offender_image_url: { type: string, format: uri }
-        sex_offender_last_updated: { type: string, format: date-time }
-        sex_offender_created: { type: string, format: date-time }
-        sex_offender_last_synced: { type: string, format: date-time }
-        sex_offender_is_synced: { type: boolean }
+        message:
+          type: string
+          examples:
+          - Forbidden
+          - Missing Authentication Token
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: Private API key issued by CrimeoMeter. Requested through the "Contact Us" form on www.crimeometer.com; there is no self-service key issuance endpoint.
