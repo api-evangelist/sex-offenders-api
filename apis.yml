@@ -40,8 +40,8 @@ tags:
 - Criminal Justice
 - Government Data
 - Geospatial
-- Real-Estate
-- Risk
+- Real Estate
+- Risk Management
 - People Data
 tags_raw:
 - Sex Offenders
@@ -54,6 +54,7 @@ tags_raw:
 - Real Estate
 - Risk
 - People Data
+- Real-Estate
 kind: contract
 deliveryModel:
   model: saas
