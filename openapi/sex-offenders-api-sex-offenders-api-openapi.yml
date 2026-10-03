@@ -167,6 +167,29 @@ paths:
                 message: Forbidden
 components:
   schemas:
+    SexOffenderRecords:
+      type: object
+      description: Envelope derived from the response example CrimeoMeter publishes on https://www.crimeometer.com/sex-offenders-api.
+      properties:
+        sex_offenders_count:
+          type: integer
+          description: Total number of matching records.
+        pages_count:
+          type: integer
+          description: Number of result pages available for the query.
+        sex_offenders:
+          type: array
+          items:
+            $ref: '#/components/schemas/SexOffender'
+    Error:
+      type: object
+      description: Error envelope observed on live unauthenticated calls (AWS API Gateway shape).
+      properties:
+        message:
+          type: string
+          examples:
+          - Forbidden
+          - Missing Authentication Token
     SexOffender:
       type: object
       description: Field set transcribed from the single published response example. Types are inferred from the example values; no field was added that the example does not show.
@@ -249,29 +272,6 @@ components:
           format: date-time
         sex_offender_is_synced:
           type: boolean
-    SexOffenderRecords:
-      type: object
-      description: Envelope derived from the response example CrimeoMeter publishes on https://www.crimeometer.com/sex-offenders-api.
-      properties:
-        sex_offenders_count:
-          type: integer
-          description: Total number of matching records.
-        pages_count:
-          type: integer
-          description: Number of result pages available for the query.
-        sex_offenders:
-          type: array
-          items:
-            $ref: '#/components/schemas/SexOffender'
-    Error:
-      type: object
-      description: Error envelope observed on live unauthenticated calls (AWS API Gateway shape).
-      properties:
-        message:
-          type: string
-          examples:
-          - Forbidden
-          - Missing Authentication Token
   securitySchemes:
     apiKeyAuth:
       type: apiKey
