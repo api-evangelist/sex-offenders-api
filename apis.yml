@@ -6,6 +6,10 @@ apis:
   tags:
   - Sex Offenders
   - Public Safety
+  - Crime
+  tags_raw:
+  - Sex Offenders
+  - Public Safety
   - Crime Data
   humanURL: https://www.crimeometer.com/sex-offenders-api
   properties:
@@ -35,7 +39,7 @@ name: Sex Offenders API
 tags:
 - Sex Offenders
 - Public Safety
-- Crime Data
+- Crime
 - Background Checks
 - Criminal Justice
 - Government Data
