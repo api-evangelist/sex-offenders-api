@@ -1,0 +1,96 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Sex Offenders API
+providerId: sex-offenders-api
+generated: '2026-08-28'
+method: searched
+source: https://www.crimeometer.com/pricing
+modified: '2026-08-28'
+tags:
+  - Sex Offenders
+  - Pricing
+  - Plans
+description: >-
+  Plans as CrimeoMeter actually publishes them, read from www.crimeometer.com/pricing and
+  www.crimeometer.com/pricing-table on 2026-08-28. THIS FILE REPLACES A SCAFFOLD: the prior
+  version of this artifact (method: generated, dated 2026-05-04) carried invented tier names
+  (Free / Professional / Enterprise), invented quotas (1,000 and 100,000 requests per month)
+  and invented rate limits that CrimeoMeter has never published. Those values are removed.
+plan_count: 2
+prices_published: false
+pricing_note: >-
+  CrimeoMeter names two subscription tracks but publishes no price, no included quota and no
+  overage rate for either. The "View Plans" control on the pricing page leads to
+  www.crimeometer.com/pricing-table, a Wix pricing-plans widget that renders no amount in the
+  served HTML; billing is handled through a Stripe customer portal
+  (billing.stripe.com/p/login/...) that requires an existing account. A prospective buyer
+  cannot learn what this API costs without contacting sales.
+plans:
+  - id: personal-subscription
+    name: Personal Subscription
+    type: subscription
+    audience: Personal / non-commercial use
+    price: not published
+    currency: USD
+    billing_period: not published
+    trial:
+      offered: true
+      length_days: 7
+    quota: not published
+    overage: not published
+    limits: not published
+    signup: https://www.crimeometer.com/#contactus
+    elements:
+      - name: Personal / non-commercial use only
+      - name: 7-day free trial
+  - id: commercial-subscription
+    name: Commercial Subscription
+    type: subscription
+    audience: Commercial use
+    price: not published
+    currency: USD
+    billing_period: not published
+    trial:
+      offered: true
+      length_days: 14
+    quota: not published
+    overage: not published
+    limits: not published
+    signup: https://www.crimeometer.com/#contactus
+    elements:
+      - name: Commercial use
+      - name: 14-day free trial
+      - name: Dedicated Support
+evidence:
+  - url: https://www.crimeometer.com/pricing
+    status: 200
+    note: 'Names both tracks and both trial lengths; publishes no amount.'
+  - url: https://www.crimeometer.com/pricing-table
+    status: 200
+    note: Wix pricing-plans widget; no price string present in the served HTML.
+  - url: https://billing.stripe.com/p/login/9AQcO4c9a0hi40gfYY
+    status: 200
+    note: Stripe customer billing portal linked from the pricing page; requires an existing account.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - subscription
+  units: []
+  plans:
+  - name: Personal Subscription
+    access: other
+    model: subscription
+    model_how: stated
+    units: []
+    periods: []
+  - name: Commercial Subscription
+    access: other
+    model: subscription
+    model_how: stated
+    units: []
+    periods: []
